@@ -9,15 +9,26 @@ import SwiftUI
 
 struct PostView: View {
     // MARK:- PROPERTIES
+    @State var postData: PostDataModel
+    
     @State private var isLiked: Bool = false
     @State private var isSaved: Bool = false
+    @State private var isLikeAnimation: Bool = false
+    
+    // MARK:- FUNCTION
+    
+    func hideAnimation(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(800)) {
+            isLikeAnimation = false
+        }
+    }
     
     // MARK:- BODY
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
             HStack(alignment: .center, spacing: 10){
-                Image("demo")
+                Image(postData.profileImage)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 33, height: 33, alignment: .center)
@@ -25,12 +36,26 @@ struct PostView: View {
                     .overlay(
                         Circle().stroke(Color.gray, lineWidth: 0.5)
                     )
-                VStack(alignment: .leading, spacing: 1){
-                    Text("dheeraj.iosdev")
+                
+                if postData.location != nil && postData.isSponsored == false {
+                    VStack(alignment: .leading, spacing: 1){
+                        Text(postData.userName)
+                            .font(Font.system(size: 14, weight: .semibold))
+                        Text(postData.location)
+                            .font(Font.system(size: 10))
+                    }
+                } else if postData.isSponsored {
+                    VStack(alignment: .leading, spacing: 1){
+                        Text(postData.userName)
+                            .font(Font.system(size: 14, weight: .semibold))
+                        Text("Sponsored")
+                            .font(Font.system(size: 10))
+                    }
+                } else {
+                    Text(postData.userName)
                         .font(Font.system(size: 14, weight: .semibold))
-                    Text("Shimla, Himachal, India")
-                        .font(Font.system(size: 10))
                 }
+                
                 Spacer()
                 Button(action:{
                     print("options")
@@ -46,20 +71,54 @@ struct PostView: View {
             
             Divider()
             
-            Image("demo")
-                .resizable()
-                .scaledToFill()
-                .aspectRatio(5/4, contentMode: .fit)
-                .clipped()
-                .onTapGesture(count: 2) {
-                    isLiked = true
+            ZStack(alignment: .center){
+                Image(postData.postImage)
+                    .resizable()
+                    .scaledToFill()
+                    .aspectRatio(5/4, contentMode: .fit)
+                    .clipped()
+                    .onTapGesture(count: 2) {
+                        postData.isLiked = true
+                        isLikeAnimation = true
+                        hideAnimation()
+                    }
+                
+                Image("white-heart")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 170, height: 170)
+                    .scaleEffect(isLikeAnimation ? 1 : 0)
+                    .opacity(isLikeAnimation ? 1 : 0)
+                    .animation(.spring())
+                
+            }//: ZSTACK
+            
+            if postData.isSponsored {
+                Button(action:{
+                    
+                }){
+                    HStack(alignment: .center){
+                        Text("Learn more")
+                            .font(Font.system(size:14, weight: .medium))
+                            .foregroundColor(.white)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.white)
+                            .font(Font.system(size: 14, weight: .medium))
+                    }
+                    .padding(.vertical, 13)
+                    .padding(.horizontal, 15)
+                    .background(Color.red)
                 }
+                Divider()
+                    .padding(.horizontal , 15)
+            }
             
             HStack(alignment: .center, spacing: 10){
                 Button(action:{
-                    isLiked.toggle()
+                    postData.isLiked = !postData.isLiked
                 }){
-                    Image(isLiked ? "like-selected" : "like")
+                    Image(postData.isLiked ? "like-selected" : "like")
                         .resizable()
                         .scaledToFill()
                         .frame(width: 30, height: 30, alignment: .center)
@@ -86,9 +145,9 @@ struct PostView: View {
                 Spacer()
                 
                 Button(action:{
-                    isSaved.toggle()
+                    postData.isSaved = !postData.isSaved
                 }){
-                    Image(isSaved ? "save-selected" : "save")
+                    Image(postData.isSaved ? "save-selected" : "save")
                         .resizable()
                         .scaledToFill()
                         .frame(width: 30, height: 30, alignment: .center)
@@ -97,25 +156,31 @@ struct PostView: View {
             .padding(.vertical, 8)
             .padding(.horizontal, 15)
             
-            Text("1,845 likes")
-                .font(Font.system(size: 14, weight: .semibold))
-                .padding(.horizontal, 15)
-            
-            Group {
-                Text("ui_gradient")
+            if postData.likes != 0 {
+                Text("\(postData.likes) likes")
                     .font(Font.system(size: 14, weight: .semibold))
-                + Text(" ")
-                + Text("This is Awesome! This is Awesome! This is Awesome! This is Awe some! This is Awesome! This is Awe some! This is Awesome! This is Awesome! This is Awe some! This is Awesome! This is Awes ome! This is Aw esome! This is Awe some! This is Awe some! This is Awesome! This is Awes ome! This is Awesome! This is Awesome! This is Aw esome!")
-                    .font(Font.system(size: 14))
+                    .padding(.horizontal, 15)
             }
-            .padding(.horizontal, 15)
-            .padding(.vertical, 3)
             
-            Text("3 hours ago")
-                .foregroundColor(.gray)
-                .font(Font.system(size: 13, weight: .medium))
+            if postData.caption != nil {
+                Group {
+                    Text(postData.userName)
+                        .font(Font.system(size: 14, weight: .semibold))
+                    + Text(" ")
+                    + Text(postData.caption)
+                        .font(Font.system(size: 14))
+                }
                 .padding(.horizontal, 15)
-                .padding(.vertical, 7)
+                .padding(.vertical, 6)
+            }
+            
+            if !postData.isSponsored {
+                Text(postData.time)
+                    .foregroundColor(.gray)
+                    .font(Font.system(size: 13, weight: .medium))
+                    .padding(.horizontal, 15)
+                    .padding(.vertical, 7)
+            }
             
         }//: VSTACK
     }
@@ -125,7 +190,7 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView()
+        PostView(postData: PostData[2])
             .previewLayout(.sizeThatFits)
     }
 }

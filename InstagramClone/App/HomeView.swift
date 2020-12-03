@@ -25,8 +25,8 @@ struct HomeView: View {
                 LazyVGrid(columns: gridLayout, alignment: .center, spacing: 0){
                     StoryView()
                     Divider()
-                    ForEach(0 ..< 3) { item in
-                        PostView()
+                    ForEach(PostData) { item in
+                        PostView(postData: item)
                     }
                 }//: GRID
             }//: SCROLL
