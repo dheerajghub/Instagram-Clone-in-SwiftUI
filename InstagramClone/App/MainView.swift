@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     // MARK:- PROPERTIES
+    @State private var selection = 0
     
     init(){
         UITabBar.appearance().barTintColor = .white
@@ -17,31 +18,36 @@ struct MainView: View {
     // MARK:- BODY
     
     var body: some View {
-        TabView{
+        TabView(selection: $selection){
             HomeView()
                 .tabItem {
-                    Image(systemName: "gear")
+                    selection == 0 ? Image("home-selected") : Image("home")
                 }
+                .tag(0)
             
             ReelsView()
                 .tabItem {
-                    Image(systemName: "gear")
+                    selection == 1 ? Image("reels-selected") : Image("reels")
                 }
+                .tag(1)
             
             AddMediaView()
                 .tabItem {
-                    Image(systemName: "gear")
+                    selection == 2 ? Image("add") : Image("add")
                 }
+                .tag(2)
             
             ActivityView()
                 .tabItem {
-                    Image(systemName: "gear")
+                    selection == 3 ? Image("heart-selected") : Image("heart")
                 }
+                .tag(3)
             
             ProfileView()
                 .tabItem {
-                    Image(systemName: "gear")
+                    selection == 4 ? Image("user-selected") : Image("user")
                 }
+                .tag(4)
         }
     }
 }

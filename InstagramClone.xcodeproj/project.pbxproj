@@ -16,6 +16,8 @@
 		44E3F57A257751A50094B3B3 /* AddMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3F579257751A50094B3B3 /* AddMediaView.swift */; };
 		44E3F57F257751C80094B3B3 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3F57E257751C80094B3B3 /* ActivityView.swift */; };
 		44E3F58725775CC80094B3B3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3F58625775CC80094B3B3 /* ProfileView.swift */; };
+		44E3F58A2577815E0094B3B3 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3F5892577815E0094B3B3 /* StoryView.swift */; };
+		44E3F5912577A9830094B3B3 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3F5902577A9830094B3B3 /* PostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		44E3F579257751A50094B3B3 /* AddMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMediaView.swift; sourceTree = "<group>"; };
 		44E3F57E257751C80094B3B3 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		44E3F58625775CC80094B3B3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		44E3F5892577815E0094B3B3 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
+		44E3F5902577A9830094B3B3 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 		44E3F56B257750760094B3B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				44E3F5892577815E0094B3B3 /* StoryView.swift */,
+				44E3F5902577A9830094B3B3 /* PostView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,6 +197,8 @@
 				44E3F5712577511A0094B3B3 /* MainView.swift in Sources */,
 				44E3F57A257751A50094B3B3 /* AddMediaView.swift in Sources */,
 				44E3F58725775CC80094B3B3 /* ProfileView.swift in Sources */,
+				44E3F58A2577815E0094B3B3 /* StoryView.swift in Sources */,
+				44E3F5912577A9830094B3B3 /* PostView.swift in Sources */,
 				44E3F57F257751C80094B3B3 /* ActivityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

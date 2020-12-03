@@ -12,42 +12,54 @@ struct HomeView: View {
     
     init(){
         UINavigationBar.appearance().barTintColor = .white
+        UINavigationBar.appearance().shadowImage = UIImage()
     }
     
     // MARK:- BODY
     
     var body: some View {
         NavigationView {
-            Text("Hello World")
+            ScrollView(.vertical, showsIndicators:false) {
+                VStack(alignment: .center, spacing: 0){
+                    StoryView()
+                    Divider()
+                    PostView()
+                    PostView()
+                }//: VSTACK
+            }//: SCROLL
             .navigationBarTitle("", displayMode: .inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        Text("Instagram")
-                            .font(Font.custom("Times-Bold", size: 20))
+                        Image("logo")
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height:65)
                     }//: TOOLBAR ITEM LEFT
         
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        HStack(alignment:.center, spacing:15){
+                        HStack(alignment:.center, spacing:25){
                             Button(action:{
                                 print("Go to Search")
                             }){
-                                Image(systemName: "gear")
+                                Image("search")
                                     .resizable()
                                     .scaledToFill()
-                                    .frame(width: 28, height: 28, alignment: .center)
+                                    .frame(width: 25, height: 25, alignment: .center)
                             }
                             
                             Button(action:{
                                 print("Go to messages")
                             }){
                                 ZStack{
-                                    Image(systemName: "gear")
+                                    Image("message")
                                         .resizable()
                                         .scaledToFill()
-                                        .frame(width: 28, height: 28, alignment: .center)
+                                        .frame(width: 25, height: 25, alignment: .center)
+                                    
                                     Text("3")
                                         .font(Font.system(size: 13, weight: .bold))
-                                        .frame(width:16, height:16)
+                                        .frame(width:18, height:18)
                                         .background(Color.red)
                                         .foregroundColor(.white)
                                         .clipShape(Circle())
@@ -55,7 +67,7 @@ struct HomeView: View {
                                             x: 9,
                                             y: -9
                                         )
-                                }
+                                }//: ZSTACK
                             }
                         }//: HSTACK
                     }//: TOOLBAR ITEM RIGHT
