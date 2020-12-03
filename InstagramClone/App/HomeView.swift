@@ -15,17 +15,20 @@ struct HomeView: View {
         UINavigationBar.appearance().shadowImage = UIImage()
     }
     
+    @State private var gridLayout: [GridItem] = [GridItem(.flexible())]
+    
     // MARK:- BODY
     
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators:false) {
-                VStack(alignment: .center, spacing: 0){
+                LazyVGrid(columns: gridLayout, alignment: .center, spacing: 0){
                     StoryView()
                     Divider()
-                    PostView()
-                    PostView()
-                }//: VSTACK
+                    ForEach(0 ..< 3) { item in
+                        PostView()
+                    }
+                }//: GRID
             }//: SCROLL
             .navigationBarTitle("", displayMode: .inline)
                 .toolbar {

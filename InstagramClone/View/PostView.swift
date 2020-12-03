@@ -9,12 +9,13 @@ import SwiftUI
 
 struct PostView: View {
     // MARK:- PROPERTIES
-    @State private var height = CGFloat.zero
+    @State private var isLiked: Bool = false
+    @State private var isSaved: Bool = false
     
     // MARK:- BODY
     
     var body: some View {
-        VStack(alignment: .center, spacing: 0){
+        VStack(alignment: .leading, spacing: 0){
             HStack(alignment: .center, spacing: 10){
                 Image("demo")
                     .resizable()
@@ -50,12 +51,15 @@ struct PostView: View {
                 .scaledToFill()
                 .aspectRatio(5/4, contentMode: .fit)
                 .clipped()
+                .onTapGesture(count: 2) {
+                    isLiked = true
+                }
             
             HStack(alignment: .center, spacing: 10){
                 Button(action:{
-                    
+                    isLiked.toggle()
                 }){
-                    Image("like-selected")
+                    Image(isLiked ? "like-selected" : "like")
                         .resizable()
                         .scaledToFill()
                         .frame(width: 30, height: 30, alignment: .center)
@@ -82,16 +86,37 @@ struct PostView: View {
                 Spacer()
                 
                 Button(action:{
-                    
+                    isSaved.toggle()
                 }){
-                    Image("save")
+                    Image(isSaved ? "save-selected" : "save")
                         .resizable()
                         .scaledToFill()
                         .frame(width: 30, height: 30, alignment: .center)
                 }
             }//: HSTACK
-            .padding(.vertical, 5)
-            .padding(.horizontal, 10)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 15)
+            
+            Text("1,845 likes")
+                .font(Font.system(size: 14, weight: .semibold))
+                .padding(.horizontal, 15)
+            
+            Group {
+                Text("ui_gradient")
+                    .font(Font.system(size: 14, weight: .semibold))
+                + Text(" ")
+                + Text("This is Awesome! This is Awesome! This is Awesome! This is Awe some! This is Awesome! This is Awe some! This is Awesome! This is Awesome! This is Awe some! This is Awesome! This is Awes ome! This is Aw esome! This is Awe some! This is Awe some! This is Awesome! This is Awes ome! This is Awesome! This is Awesome! This is Aw esome!")
+                    .font(Font.system(size: 14))
+            }
+            .padding(.horizontal, 15)
+            .padding(.vertical, 3)
+            
+            Text("3 hours ago")
+                .foregroundColor(.gray)
+                .font(Font.system(size: 13, weight: .medium))
+                .padding(.horizontal, 15)
+                .padding(.vertical, 7)
+            
         }//: VSTACK
     }
 }
