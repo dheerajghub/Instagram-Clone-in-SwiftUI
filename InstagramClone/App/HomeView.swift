@@ -23,7 +23,7 @@ struct HomeView: View {
         NavigationView {
             ScrollView(.vertical, showsIndicators:false) {
                 LazyVGrid(columns: gridLayout, alignment: .center, spacing: 0){
-                    StoryView()
+                    StoryView(storyData: StoryData)
                     Divider()
                     ForEach(PostData) { item in
                         PostView(postData: item)

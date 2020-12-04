@@ -9,7 +9,9 @@ import AVKit
 import SwiftUI
 
 class VideoPlayer: UIView {
+    
     var playerLayer = AVPlayerLayer()
+    var player = AVPlayer()
     
     let label:UILabel = {
         let l = UILabel()
@@ -34,7 +36,7 @@ class VideoPlayer: UIView {
     }
     
     func manageData(_ url: URL){
-        let player = AVPlayer(url:url)
+        player = AVPlayer(url:url)
         player.isMuted = true
         player.actionAtItemEnd = .none
         NotificationCenter.default.addObserver(self,
@@ -51,6 +53,10 @@ class VideoPlayer: UIView {
         if let playerItem = notification.object as? AVPlayerItem {
             playerItem.seek(to: CMTime.zero, completionHandler: nil)
         }
+    }
+    
+    func toggleSound(_ toggle:Bool){
+        player.isMuted = toggle
     }
     
     override func layoutSubviews() {

@@ -14,6 +14,7 @@ struct PostView: View {
     @State private var isLiked: Bool = false
     @State private var isSaved: Bool = false
     @State private var isLikeAnimation: Bool = false
+    @State private var isMute: Bool = true
     
     // MARK:- FUNCTION
     
@@ -48,14 +49,14 @@ struct PostView: View {
                         Text(postData.userName)
                             .font(Font.system(size: 14, weight: .semibold))
                         Text(postData.location)
-                            .font(Font.system(size: 10))
+                            .font(Font.system(size: 12))
                     }
                 } else if postData.isSponsored {
                     VStack(alignment: .leading, spacing: 1){
                         Text(postData.userName)
                             .font(Font.system(size: 14, weight: .semibold))
                         Text("Sponsored")
-                            .font(Font.system(size: 10))
+                            .font(Font.system(size: 12))
                     }
                 } else {
                     Text(postData.userName)
@@ -101,8 +102,9 @@ struct PostView: View {
                 }//: ZSTACK
             } else {
                 ZStack(alignment: .center){
+                    
                     if Bundle.main.url(forResource: postData.videoUrl, withExtension: "mp4") != nil {
-                        PlayerView(url: Bundle.main.url(forResource: postData.videoUrl, withExtension: "mp4")!)
+                        PlayerView(url: Bundle.main.url(forResource: postData.videoUrl, withExtension: "mp4")!, isMute: $isMute)
                            .frame(width: UIScreen.main.bounds.width, height: estimatedHeight(postData.dimensionVideo.width,postData.dimensionVideo.height))
                             .onTapGesture(count: 2) {
                                 postData.isLiked = true
@@ -118,8 +120,11 @@ struct PostView: View {
                         .scaleEffect(isLikeAnimation ? 1 : 0)
                         .opacity(isLikeAnimation ? 1 : 0)
                         .animation(.spring())
-                    
                 }//: ZSTACK
+                .background(Color(red:230/255, green:230/255 ,blue:230/255))
+                .onTapGesture(count: 1) {
+                    isMute.toggle()
+                }
             }
             
             if postData.isSponsored {
@@ -184,8 +189,12 @@ struct PostView: View {
             .padding(.vertical, 8)
             .padding(.horizontal, 15)
             
-            if postData.likes != 0 {
+            if postData.likes != 0 && !postData.isVideo {
                 Text("\(postData.likes) likes")
+                    .font(Font.system(size: 14, weight: .semibold))
+                    .padding(.horizontal, 15)
+            } else if postData.views != 0 {
+                Text("\(postData.views) views")
                     .font(Font.system(size: 14, weight: .semibold))
                     .padding(.horizontal, 15)
             }
@@ -218,7 +227,7 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView(postData: PostData[2])
+        PostView(postData: PostData[3])
             .previewLayout(.sizeThatFits)
     }
 }

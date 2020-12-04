@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44538DF6257A1624003DE962 /* StoryDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44538DF5257A1624003DE962 /* StoryDataModel.swift */; };
+		44538DF9257A18CC003DE962 /* StoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44538DF8257A18CC003DE962 /* StoryData.swift */; };
+		44785A53257A538C007FCDF0 /* demo2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 44785A52257A538C007FCDF0 /* demo2.mp4 */; };
 		447A368125793B8100C41D12 /* PostDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A368025793B8100C41D12 /* PostDataModel.swift */; };
 		447A368525793C8400C41D12 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A368425793C8400C41D12 /* PostData.swift */; };
 		447A368C2579D21A00C41D12 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A368B2579D21A00C41D12 /* VideoPlayer.swift */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44538DF5257A1624003DE962 /* StoryDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDataModel.swift; sourceTree = "<group>"; };
+		44538DF8257A18CC003DE962 /* StoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryData.swift; sourceTree = "<group>"; };
+		44785A52257A538C007FCDF0 /* demo2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo2.mp4; sourceTree = "<group>"; };
 		447A368025793B8100C41D12 /* PostDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDataModel.swift; sourceTree = "<group>"; };
 		447A368425793C8400C41D12 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		447A368B2579D21A00C41D12 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
@@ -61,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				447A368025793B8100C41D12 /* PostDataModel.swift */,
+				44538DF5257A1624003DE962 /* StoryDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -69,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				447A36962579F64200C41D12 /* demo.mp4 */,
+				44785A52257A538C007FCDF0 /* demo2.mp4 */,
 			);
 			path = DemoVideo;
 			sourceTree = "<group>";
@@ -149,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				447A368425793C8400C41D12 /* PostData.swift */,
+				44538DF8257A18CC003DE962 /* StoryData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -213,6 +222,7 @@
 				44E3F56225774FEA0094B3B3 /* Preview Assets.xcassets in Resources */,
 				447A36992579FAFF00C41D12 /* demo.mp4 in Resources */,
 				44E3F55F25774FEA0094B3B3 /* Assets.xcassets in Resources */,
+				44785A53257A538C007FCDF0 /* demo2.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,10 +236,12 @@
 				44E3F574257751770094B3B3 /* HomeView.swift in Sources */,
 				44E3F577257751930094B3B3 /* ReelsView.swift in Sources */,
 				44E3F55B25774FE70094B3B3 /* InstagramCloneApp.swift in Sources */,
+				44538DF6257A1624003DE962 /* StoryDataModel.swift in Sources */,
 				447A368125793B8100C41D12 /* PostDataModel.swift in Sources */,
 				44E3F5712577511A0094B3B3 /* MainView.swift in Sources */,
 				44E3F57A257751A50094B3B3 /* AddMediaView.swift in Sources */,
 				44E3F58725775CC80094B3B3 /* ProfileView.swift in Sources */,
+				44538DF9257A18CC003DE962 /* StoryData.swift in Sources */,
 				447A368F2579D3CC00C41D12 /* PlayerView.swift in Sources */,
 				44E3F58A2577815E0094B3B3 /* StoryView.swift in Sources */,
 				447A368C2579D21A00C41D12 /* VideoPlayer.swift in Sources */,
