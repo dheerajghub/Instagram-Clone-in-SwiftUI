@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		447A368125793B8100C41D12 /* PostDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A368025793B8100C41D12 /* PostDataModel.swift */; };
 		447A368525793C8400C41D12 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A368425793C8400C41D12 /* PostData.swift */; };
+		447A368C2579D21A00C41D12 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A368B2579D21A00C41D12 /* VideoPlayer.swift */; };
+		447A368F2579D3CC00C41D12 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A368E2579D3CC00C41D12 /* PlayerView.swift */; };
+		447A36992579FAFF00C41D12 /* demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 447A36962579F64200C41D12 /* demo.mp4 */; };
 		44E3F55B25774FE70094B3B3 /* InstagramCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3F55A25774FE70094B3B3 /* InstagramCloneApp.swift */; };
 		44E3F55F25774FEA0094B3B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44E3F55E25774FEA0094B3B3 /* Assets.xcassets */; };
 		44E3F56225774FEA0094B3B3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44E3F56125774FEA0094B3B3 /* Preview Assets.xcassets */; };
@@ -25,6 +28,9 @@
 /* Begin PBXFileReference section */
 		447A368025793B8100C41D12 /* PostDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDataModel.swift; sourceTree = "<group>"; };
 		447A368425793C8400C41D12 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
+		447A368B2579D21A00C41D12 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
+		447A368E2579D3CC00C41D12 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		447A36962579F64200C41D12 /* demo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo.mp4; sourceTree = "<group>"; };
 		44E3F55725774FE70094B3B3 /* InstagramClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44E3F55A25774FE70094B3B3 /* InstagramCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramCloneApp.swift; sourceTree = "<group>"; };
 		44E3F55E25774FEA0094B3B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +65,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		447A36952579F63300C41D12 /* DemoVideo */ = {
+			isa = PBXGroup;
+			children = (
+				447A36962579F64200C41D12 /* demo.mp4 */,
+			);
+			path = DemoVideo;
+			sourceTree = "<group>";
+		};
 		44E3F54E25774FE70094B3B3 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +92,7 @@
 		44E3F55925774FE70094B3B3 /* InstagramClone */ = {
 			isa = PBXGroup;
 			children = (
+				447A36952579F63300C41D12 /* DemoVideo */,
 				447A367F25793B6D00C41D12 /* Model */,
 				44E3F56E257750980094B3B3 /* Data */,
 				44E3F56C2577507F0094B3B3 /* Utility */,
@@ -117,6 +132,8 @@
 			children = (
 				44E3F5892577815E0094B3B3 /* StoryView.swift */,
 				44E3F5902577A9830094B3B3 /* PostView.swift */,
+				447A368B2579D21A00C41D12 /* VideoPlayer.swift */,
+				447A368E2579D3CC00C41D12 /* PlayerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -194,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44E3F56225774FEA0094B3B3 /* Preview Assets.xcassets in Resources */,
+				447A36992579FAFF00C41D12 /* demo.mp4 in Resources */,
 				44E3F55F25774FEA0094B3B3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +230,9 @@
 				44E3F5712577511A0094B3B3 /* MainView.swift in Sources */,
 				44E3F57A257751A50094B3B3 /* AddMediaView.swift in Sources */,
 				44E3F58725775CC80094B3B3 /* ProfileView.swift in Sources */,
+				447A368F2579D3CC00C41D12 /* PlayerView.swift in Sources */,
 				44E3F58A2577815E0094B3B3 /* StoryView.swift in Sources */,
+				447A368C2579D21A00C41D12 /* VideoPlayer.swift in Sources */,
 				44E3F5912577A9830094B3B3 /* PostView.swift in Sources */,
 				447A368525793C8400C41D12 /* PostData.swift in Sources */,
 				44E3F57F257751C80094B3B3 /* ActivityView.swift in Sources */,

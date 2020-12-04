@@ -23,6 +23,12 @@ struct PostView: View {
         }
     }
     
+    func estimatedHeight(_ width:Float , _ height: Float) -> CGFloat {
+        let ratio = CGFloat(height) / CGFloat(width)
+        let estimatedH = ratio * UIScreen.main.bounds.width
+        return estimatedH
+    }
+    
     // MARK:- BODY
     
     var body: some View {
@@ -71,27 +77,50 @@ struct PostView: View {
             
             Divider()
             
-            ZStack(alignment: .center){
-                Image(postData.postImage)
-                    .resizable()
-                    .scaledToFill()
-                    .aspectRatio(5/4, contentMode: .fit)
-                    .clipped()
-                    .onTapGesture(count: 2) {
-                        postData.isLiked = true
-                        isLikeAnimation = true
-                        hideAnimation()
+            if !postData.isVideo {
+                ZStack(alignment: .center){
+                    Image(postData.postImage)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UIScreen.main.bounds.width, height: estimatedHeight(postData.dimensionImage.width,postData.dimensionImage.height))
+                        .clipped()
+                        .onTapGesture(count: 2) {
+                            postData.isLiked = true
+                            isLikeAnimation = true
+                            hideAnimation()
+                        }
+                    
+                    Image("white-heart")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 170, height: 170)
+                        .scaleEffect(isLikeAnimation ? 1 : 0)
+                        .opacity(isLikeAnimation ? 1 : 0)
+                        .animation(.spring())
+                    
+                }//: ZSTACK
+            } else {
+                ZStack(alignment: .center){
+                    if Bundle.main.url(forResource: postData.videoUrl, withExtension: "mp4") != nil {
+                        PlayerView(url: Bundle.main.url(forResource: postData.videoUrl, withExtension: "mp4")!)
+                           .frame(width: UIScreen.main.bounds.width, height: estimatedHeight(postData.dimensionVideo.width,postData.dimensionVideo.height))
+                            .onTapGesture(count: 2) {
+                                postData.isLiked = true
+                                isLikeAnimation = true
+                                hideAnimation()
+                            }
                     }
-                
-                Image("white-heart")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 170, height: 170)
-                    .scaleEffect(isLikeAnimation ? 1 : 0)
-                    .opacity(isLikeAnimation ? 1 : 0)
-                    .animation(.spring())
-                
-            }//: ZSTACK
+                    
+                    Image("white-heart")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 170, height: 170)
+                        .scaleEffect(isLikeAnimation ? 1 : 0)
+                        .opacity(isLikeAnimation ? 1 : 0)
+                        .animation(.spring())
+                    
+                }//: ZSTACK
+            }
             
             if postData.isSponsored {
                 Button(action:{
