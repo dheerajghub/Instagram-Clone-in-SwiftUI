@@ -100,15 +100,14 @@ struct PostView: View {
                     HStack(alignment: .center){
                         Text("Learn more")
                             .font(Font.system(size:14, weight: .medium))
-                            .foregroundColor(.white)
+                            .foregroundColor(.blue)
                         Spacer()
                         Image(systemName: "chevron.right")
-                            .foregroundColor(.white)
+                            .foregroundColor(.blue)
                             .font(Font.system(size: 14, weight: .medium))
                     }
                     .padding(.vertical, 13)
                     .padding(.horizontal, 15)
-                    .background(Color.red)
                 }
                 Divider()
                     .padding(.horizontal , 15)
