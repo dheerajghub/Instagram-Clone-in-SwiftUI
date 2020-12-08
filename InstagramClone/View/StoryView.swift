@@ -19,6 +19,13 @@ struct StoryView: View {
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){
+            // We can also use HStack instead of LazyHGrid but optimization is must
+            // VStack create all the views at once, which will take alot of time to load. for example
+            // HStack{
+            //      ForEach(0..<500){
+            //          Text("HelloWorld")
+            //      }
+            //  }
             LazyHGrid(rows: gridLayout, alignment: .center, spacing: 5) {
                 ForEach(storyData) { story in
                     VStack(alignment: .center, spacing: 8){
