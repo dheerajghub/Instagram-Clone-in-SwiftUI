@@ -122,9 +122,28 @@ struct PostView: View {
                         .animation(.spring())
                 }//: ZSTACK
                 .background(Color(red:230/255, green:230/255 ,blue:230/255))
-                .onTapGesture(count: 1) {
-                    isMute.toggle()
-                }
+                .overlay(
+                    Button(action:{
+                        isMute.toggle()
+                    }) {
+                        ZStack{
+                            Circle()
+                                .fill(Color(red:0, green:0, blue:0))
+                                .frame(width:30, height:30)
+                                .opacity(0.8)
+                            
+                            Image(isMute ? "mute" : "sound")
+                                .resizable()
+                                .renderingMode(.template)
+                                .foregroundColor(.white)
+                                .scaledToFill()
+                                .frame(width: 17, height: 17)
+                                .clipShape(Circle())
+                        }
+                    }
+                    .padding(13)
+                    ,alignment: .bottomTrailing
+                )
             }
             
             if postData.isSponsored {
@@ -227,7 +246,7 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView(postData: PostData[3])
+        PostView(postData: PostData[4])
             .previewLayout(.sizeThatFits)
     }
 }
