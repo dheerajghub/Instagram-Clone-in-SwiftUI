@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct HighlightView: View {
+    // MARK:- PROPERTIES
+    
+    let data: [HighlightDataModel]
+        
+    // MARK:- BODY
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){
             HStack(alignment: .center, spacing: 10){
-                ForEach(0..<5) { item in
+                ForEach(data) { item in
                     VStack(alignment: .center, spacing: 8){
                         ZStack {
-                            Image("demo")
+                            Image(item.cover)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 58, height: 58, alignment: .center)
@@ -24,7 +30,7 @@ struct HighlightView: View {
                                 .frame(width: 68, height: 68, alignment: .center)
                         }//: ZSTACK
                     
-                        Text("Design to code")
+                        Text(item.name)
                             .lineLimit(1)
                             .font(Font.system(size: 12, weight: .regular))
                             .frame(width: 75)
@@ -40,7 +46,7 @@ struct HighlightView: View {
 
 struct HighlightView_Previews: PreviewProvider {
     static var previews: some View {
-        HighlightView()
+        HighlightView(data: HighlightData)
             .previewLayout(.sizeThatFits)
     }
 }

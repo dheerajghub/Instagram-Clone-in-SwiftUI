@@ -12,15 +12,28 @@ struct PostGridView: View {
     
     let gridLayout:[GridItem] =  Array(repeating: .init(.flexible(), spacing:2), count: 3)
     
+    let data: [ProfilePostModel]
+    
     // MARK:- BODY
     
     var body: some View {
         LazyVGrid(columns: gridLayout, spacing:2){
-            ForEach(0 ..< 70) { item in
-                Image("demo")
+            ForEach(data) { item in
+                Image(item.image)
                     .resizable()
                     .scaledToFill()
                     .frame(height: (UIScreen.main.bounds.width - 8) / 3)
+                    .clipped()
+                    .overlay(
+                        ZStack{
+                            Image(item.type == "video" ? "video" : "multiple")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 28, height: 28)
+                                .padding(5)
+                        }
+                        , alignment: .topTrailing
+                    )
             }//: LOOP
         }//: GRID
     }
@@ -30,7 +43,7 @@ struct PostGridView: View {
 
 struct PostGridView_Previews: PreviewProvider {
     static var previews: some View {
-        PostGridView()
+        PostGridView(data: ProfilePostData)
             .padding(.horizontal , 2)
     }
 }

@@ -16,26 +16,70 @@ struct ProfileView: View {
         UINavigationBar.appearance().shadowImage = UIImage()
     }
     
+    @State private var bottomSheetShown = false
+    
     // MARK:- BODY
     
     var body: some View {
-        NavigationView {
-            ScrollView(.vertical, showsIndicators: false){
-                VStack(alignment: .center, spacing: 0) {
-                    UserProfileView()
-                    HighlightView()
-                    PostGridView()
-                        .padding(.horizontal, 2)
-                }//: VSTACK
-            }//: SCROLL
-            .navigationBarTitle("", displayMode: .inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("dheeraj.iosdev")
-                        .font(Font.system(size: 22, weight: .bold))
-                }//: TOOLBAR ITEM LEFT
+        ZStack {
+            NavigationView {
+                ScrollView(.vertical, showsIndicators: false){
+                    VStack(alignment: .center, spacing: 0) {
+                        UserProfileView()
+                        HighlightView(data: HighlightData)
+                        PostGridView(data: ProfilePostData)
+                            .padding(.horizontal, 2)
+                    }//: VSTACK
+                }//: SCROLL
+                .navigationBarTitle("", displayMode: .inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Text("dheeraj.iosdev")
+                            .font(Font.system(size: 22, weight: .bold))
+                    }//: TOOLBAR ITEM LEFT
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action:{
+                            bottomSheetShown.toggle()
+                        }){
+                           Image("setting")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 22, height: 22)
+                        }
+//                        HStack(alignment: .center, spacing: 20){
+//                            Button(action:{
+//                                bottomSheetShown.toggle()
+//                            }){
+//                               Image("add2")
+//                                .resizable()
+//                                .scaledToFill()
+//                                .frame(width: 22, height: 22)
+//                            }
+//                        }
+                    }//: TOOLBAR ITEM RIGHT
+                }
+            }//: NAVIGATION
+            
+            if bottomSheetShown {
+                Rectangle()
+                    .fill(Color.black)
+                    .opacity(0.7)
+                    .edgesIgnoringSafeArea(.all)
+                    .onTapGesture {
+                        bottomSheetShown.toggle()
+                    }
             }
-        }//: NAVIGATION
+            
+            GeometryReader { geometry in
+                BottomSheetView(
+                    isOpen: self.$bottomSheetShown,
+                    maxHeight: geometry.size.height * 0.7
+                ) {
+                    SettingsView()
+                }
+            }.edgesIgnoringSafeArea(.all)
+        }
     }
 }
 
