@@ -1,5 +1,5 @@
 # Instagram-Clone-in-SwiftUI
-This is a series of learning experience in which i regularly try to create instagram clone using swiftUI and update it as well!
+This is a series of learning experience in which i regularly try to create instagram screens using swiftUI
 
 ## Glance of Updates
 
